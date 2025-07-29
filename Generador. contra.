@@ -1,3 +1,4 @@
+import random
 caracteres =  "+-/*!&$#?=@abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
 longitud = int(input("De cuántos caracteres quieres tu contraseña?"))
 contraseña = ""
