@@ -20,15 +20,32 @@ async def heh(ctx, count_heh = 5):
     await ctx.send("he" * count_heh)
 
 @bot.command()
-async def opt(ctx, opt: str, left: int, right: int):
+async def opt(ctx, opt: str, *numbers: float):
+    if not numbers:
+        return await ctx.send("Debes escribir al menos un número.")
+
     if opt == "+":
-        await ctx.send(left + right)
+        result = sum(numbers)
+
     elif opt == "x":
-        await ctx.send(left * right)
+        result = 1
+        for n in numbers:
+            result *= n
+
     elif opt == "/":
-        await ctx.send(left / right)
+        result = numbers[0]
+        for n in numbers[1:]:
+            result /= n
+
     elif opt == "//":
-        await ctx.send(left // right)
+        result = numbers[0]
+        for n in numbers[1:]:
+            result //= n
+
+    else:
+        return await ctx.send("Operación no válida. Usa +, x, / o //")
+
+    await ctx.send(result)
 
 @bot.command()
 async def choose(ctx, *choices: str):
