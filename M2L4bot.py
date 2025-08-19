@@ -73,10 +73,23 @@ def get_dog_image_url():
     data = res.json()
     return data['url']
 
+def get_cat_facts():
+    url = 'https://meowfacts.herokuapp.com/'
+    res = requests.get(url)
+    
+    if res.status_code == 200: #Comprobamos si cuando hicimos la petición HTTP (requests.get(url)), el servidor devolvio un código de estado correcto.
+        data = res.json()
+        # Accedemos al primer dato dentro de "data" (que es una lista)
+        return data['data'][0]
 
 @bot.command('dog')
 async def dog(ctx):
     image_url = get_dog_image_url()
     await ctx.send(image_url)
+
+@bot.command('catfact')
+async def cat(ctx):
+    cat_fact = get_cat_facts()
+    await ctx.send(cat_fact)
 
 bot.run("")
