@@ -147,5 +147,9 @@ botes = [
 async def bote(ctx):
     mensaje = random.choice(botes)
     await ctx.send(f" {mensaje}")
-    
+
+@bot.command()
+async def commands(ctx):
+    await ctx.send("!hello !heh !opt !choose !joined !meme !dog !catfact !tiempo !lugar !bote")
+
 bot.run("")
